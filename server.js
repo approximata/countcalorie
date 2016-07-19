@@ -34,44 +34,4 @@ app.post('/meals', function(req, res){
 });
 
 
-// var dbQueries =(function() {
-//   var insertToDb = function(text, callback){
-//     con.query('INSERT INTO `tablecalorie` (`name`, `calorie`, `date`)' +
-//     ' VALUES (?,?,?);', text, function(err, result){
-//       if (err) {
-//         console.log(err.toString());
-//         return;
-//       }
-//       callback(result.toString());
-//     });
-//   };
-//   return {
-//     insertToDbPublic: function(){
-//       insertToDb();
-//     },
-//   };
-// })();
-//
-// var meals =(function() {
-//   var addMeal = function() {
-//     app.post('/meals', function(req, res){
-//       con.query('INSERT INTO `tablecalorie` (`name`, `calorie`, `date`)' +
-//       ' VALUES ('+ "'" + req.body.name + "'" + ', ' + "'" + req.body.calories + "'" + ', ' + "'" + req.body.date + "'" + ');', function(err, result){
-//         if(err){
-//           console.log(err.toString());
-//           return;
-//         }
-//         console.log({ result, name: req.body.name, calorie: req.body.calories, date: req.body.date});
-//         res.json({"status": "ok"});
-//       });
-//     });
-//   };
-//   return {
-//     addMealPublic: function(){
-//       addMeal();
-//     },
-//   };
-// })();
-//
-
 app.listen(3000);
