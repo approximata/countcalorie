@@ -1,14 +1,14 @@
 'use strict';
 
-
-// var foodmaneger = function()
-var button = document.querySelector('.button-text');
-var foodlist = document.querySelector('.food-list');
-var inputFieldName = document.querySelector('.name');
-var inputFieldCalorie = document.querySelector('.calorie');
-var inputFieldDate = document.querySelector('.date');
 var url = 'http://localhost:3000/meals/';
 
+var foodManeger = (function() {
+
+  var button = document.querySelector('.button-text');
+  var foodlist = document.querySelector('.food-list');
+  var inputFieldName = document.querySelector('.name');
+  var inputFieldCalorie = document.querySelector('.calorie');
+  var inputFieldDate = document.querySelector('.date');
 
 // function addHtml(element) {
 //   var newTodo = document.createElement('div');
@@ -45,29 +45,36 @@ var url = 'http://localhost:3000/meals/';
 //   xhr.send(null);
 // }
 
-function xhrRequest(method, urlr, data, type, cb) {
-  var xhr = new XMLHttpRequest();
-  xhr.open(method, urlr, true);
-  xhr.setRequestHeader(type, 'application/json');
-  xhr.send(data);
-  xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE) {
-      cb(JSON.parse(xhr.response));
-      console.log(JSON.parse(xhr.response));
-    }
-  };
-}
+  function xhrRequest(method, urlr, data, type, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, urlr, true);
+    xhr.setRequestHeader(type, 'application/json');
+    xhr.send(data);
+    xhr.onload = function () {
+      if (xhr.readyState === xhr.DONE) {
+        cb(JSON.parse(xhr.response));
+        console.log(JSON.parse(xhr.response));
+      }
+    };
+  }
 
+  function addSendData() {
+    return JSON.stringify(
+      {
+        "name": inputFieldName.value,
+        "calories": inputFieldCalorie.value,
+        "date": inputFieldDate.value
+      });
+  }
 
-function addFood() {
-  var method = 'POST';
-  var urlr = url;
-  var type = 'Content-Type';
-  var data = JSON.stringify({"name": inputFieldName.value,  "calories": inputFieldCalorie.value, "date": inputFieldDate.value });
-  xhrRequest(method, urlr, data, type, function(response){
-    console.log(response);
-  });
-}
+  function addFood() {
+    var method = 'POST';
+    var urlr = url;
+    var type = 'Content-Type';
+    xhrRequest(method, urlr, addSendData(), type, function(response){
+      console.log(response);
+    });
+  }
 
 // function chkTask(event) {
 //   var id = event.target.getAttribute('id').slice(1);
@@ -103,5 +110,10 @@ function addFood() {
 // }
 //
 // getToDolList();
+  return {
+    addFood: addFood,
+    button: button
+  }
+})();
 
-button.addEventListener('click', addFood);
+foodManeger.button.addEventListener('click', foodManeger.addFood);
