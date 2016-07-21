@@ -20,18 +20,34 @@ var con = mysql.createConnection({
 
 var myMeal = meal(con);
 
+app.get('/meals', function(req, res){
+  var callback = function (result) {
+    console.log(result, 'from server.js');
+    res.json(result);
+  };
+  myMeal.listMeals(callback);
+});
+
+//  con.query('SELECT * FROM tablecalorie', function(err, result){
+//    if(err){
+//      console.log(err.toString());
+//    }
+//    console.log(result);
+//    res.json(result);
+//  })
+// });
+
 app.post('/meals', function(req, res){
   var meal = {
     name: req.body.name,
     calories: req.body.calories,
     date: req.body.date
-  }
+  };
   var callback = function (result){
     console.log(result);
-    res.json({"status": "ok"});
-  }
+    res.json({ "status": "ok" });
+  };
   myMeal.addMeal(meal, callback);
 });
-
 
 app.listen(3000);

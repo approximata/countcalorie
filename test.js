@@ -24,7 +24,7 @@ tape('test have been called with 3', function(t) {
   t.end();
 });
 
-tape('test to addmeal calls query', function (t) {
+tape('test to addmeal calls query', function(t) {
   var mockConnection = {
     query: sinon.spy()
   };
@@ -33,7 +33,6 @@ tape('test to addmeal calls query', function (t) {
   t.ok(mockConnection.query.called);
   t.end();
 });
-
 
 tape('addmeal calls query with proper sql', function (t) {
   var mockConnection = {
@@ -47,12 +46,18 @@ tape('addmeal calls query with proper sql', function (t) {
     date: "2016.01.01"
   };
 
-  // var expectedSQL = 'INSERT INTO `tablecalorie` (`name`, `calorie`, `date`)' +
-  //   ' VALUES (?, ?, ?);', ["alma", 2, "2016.01.01"]
-
   testMealModule.addMeal(testMeal);
   t.ok(mockConnection.query.calledWithMatch('INSERT INTO `tablecalorie` (`name`, `calorie`, `date`)' +
     ' VALUES (?, ?, ?);', ["alma", 2, "2016.01.01"]));
-  console.log(mockConnection.query);
+  t.end();
+});
+
+tape('test to listMeals calls query', function(t) {
+  var mockConnection = {
+    query: sinon.spy()
+  };
+  var testMealModule = meal(mockConnection);
+  testMealModule.listMeals();
+  t.ok(mockConnection.query.called);
   t.end();
 });
