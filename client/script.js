@@ -38,7 +38,6 @@ var foodManeger = (function() {
     xhrhandler.xhrRequest(method, urlr, addSendData(), type, function(response){
       console.log(response, 'front script.js');
       cb(response.meal)
-      // domBuild.addHtml(response.meal);
     });
   }
 
@@ -52,21 +51,22 @@ var foodManeger = (function() {
   //   );
   // }
 
-  function drawTasks(inputdata) {
-    inputdata.forEach(function (element) {
-      if ((element.name).length > 0) {
-        console.log(element);
-        domBuild.addHtml(element);
-      }
-    });
-  }
+  // function drawTasks(inputdata) {
+  //   inputdata.forEach(function (element) {
+  //     if ((element.name).length > 0) {
+  //       console.log(element);
+  //       domBuild.addHtml(element);
+  //     }
+  //   });
+  // }
 
-  function getToDoList() {
+  function getToDoList(cb) {
     var method = 'GET';
     var urlr = url;
     var type = 'Content-Type';
     xhrhandler.xhrRequest(method, urlr, '', type, function(response){
-      drawTasks(response);
+      // drawTasks(response);
+      cb(response);
       console.log(response, 'front script.js');
     });
   }
@@ -77,5 +77,5 @@ var foodManeger = (function() {
   }
 })();
 
-foodManeger.getToDoList();
+// foodManeger.getToDoList();
 // button.addEventListener('click', foodManeger.addFood);

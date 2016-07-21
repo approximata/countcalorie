@@ -39,8 +39,19 @@ var domBuild = (function() {
     setInputBlank();
     console.log('addhtml done');
   }
+
+  function drawTasks(inputdata) {
+    inputdata.forEach(function (element) {
+      if ((element.name).length > 0) {
+        console.log(element);
+        addHtml(element);
+      }
+    });
+  }
+
   return {
     addHtml: addHtml,
-    button: button
+    button: button,
+    drawTasks: drawTasks
   };
 })();

@@ -4,7 +4,15 @@ var controll = (function(){
   function addFoodEvent(){
     foodManeger.addFood(domBuild.addHtml);
   }
+
+  function getAllToScreen(){
+    foodManeger.getToDoList(domBuild.drawTasks);
+  }
+  
   return{
-    addFoodEvent: addFoodEvent
+    addFoodEvent: addFoodEvent,
+    getAllToScreen: getAllToScreen,
   }
 })();
+
+controll.getAllToScreen();
