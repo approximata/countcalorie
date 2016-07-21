@@ -1,13 +1,13 @@
 'use strict';
 
-var button = document.querySelector('.button-text');
+// var button = document.querySelector('.button-text');
 var foodlist = document.querySelector('.food-list');
 var inputFieldName = document.querySelector('.name');
 var inputFieldCalorie = document.querySelector('.calorie');
 var inputFieldDate = document.querySelector('.date');
 
 var domBuild = (function() {
-
+  var button = document.querySelector('.button-text');
   // var button = document.querySelector('.button-text');
   // var foodlist = document.querySelector('.food-list');
   // var inputFieldName = document.querySelector('.name');
@@ -40,6 +40,7 @@ var domBuild = (function() {
     console.log('addhtml done');
   }
   return {
-    addHtml: addHtml
+    addHtml: addHtml,
+    button: button
   };
 })();

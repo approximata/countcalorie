@@ -31,15 +31,26 @@ var foodManeger = (function() {
       });
   }
 
-  function addFood() {
+  function addFood(cb) {
     var method = 'POST';
     var urlr = url;
     var type = 'Content-Type';
     xhrhandler.xhrRequest(method, urlr, addSendData(), type, function(response){
       console.log(response, 'front script.js');
-      domBuild.addHtml(response.meal);
+      cb(response.meal)
+      // domBuild.addHtml(response.meal);
     });
   }
+
+  // function addFood(callback) {
+  //   var method = 'POST';
+  //   var urlr = url;
+  //   var type = 'Content-Type';
+  //   xhrhandler.xhrRequest(method, urlr, addSendData(), type, function(response){
+  //     callback(response.meal);
+  //   }
+  //   );
+  // }
 
   function drawTasks(inputdata) {
     inputdata.forEach(function (element) {
@@ -67,4 +78,4 @@ var foodManeger = (function() {
 })();
 
 foodManeger.getToDoList();
-button.addEventListener('click', foodManeger.addFood);
+// button.addEventListener('click', foodManeger.addFood);
