@@ -37,6 +37,7 @@ var domBuild = (function() {
     foodlist.appendChild(newFood);
     // newFood.querySelector('#d' + element.id).addEventListener('click', deleteFood);
     setInputBlank();
+    console.log('addhtml done');
   }
   return {
     addHtml: addHtml

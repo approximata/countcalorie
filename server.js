@@ -28,26 +28,69 @@ app.get('/meals', function(req, res){
   myMeal.listMeals(callback);
 });
 
-//  con.query('SELECT * FROM tablecalorie', function(err, result){
-//    if(err){
-//      console.log(err.toString());
-//    }
-//    console.log(result);
-//    res.json(result);
-//  })
-// });
-
 app.post('/meals', function(req, res){
   var meal = {
     name: req.body.name,
-    calories: req.body.calories,
+    calorie: req.body.calorie,
     date: req.body.date
   };
   var callback = function (result){
     console.log(result);
-    res.json({ "status": "ok" });
+    meal.id = result.insertId;
+    res.json({ "status": "ok", "meal": meal });
   };
   myMeal.addMeal(meal, callback);
 });
+
+app.delete('/meals/:id', function(req, res){
+  var id = Number(req.params.id);
+  var callback = function (result){
+    console.log(result, 'end point delete');
+    if(result.affectedRows === 0){
+      res.json({ "status": "not exists" });
+    }
+    res.json({ "status": "ok",
+    "meal": {
+    "id": Number(req.params.id),
+    }
+    });
+  };
+  myMeal.deleteMeal(id, callback);
+});
+
+//   con.query('UPDATE `todotask` SET `destroyed`=' + "'" + 1 + "'" + ' WHERE `id`='+ "'" + Number(req.params.id) + "'" +' ;', function(err, result){
+//     if (err) {
+//       console.log(err.toString());
+//     }
+//     console.log(Number(req.params.id + result));
+//     res.json(result);
+//     Number(req.params.id)
+//   });
+// });
+//
+// app.delete('/meals/:id', function(req, res){
+//
+//   var newtodo = todolist.filter(function (e){
+//       return e.id !== +req.params.id
+//   });
+//
+//   var filtered = todolist.filter(function (e){
+//       if(e.id === +req.params.id){
+//         e.destroyed = true;
+//         todolist = newtodo;
+//         return e;
+//       }
+//   })[0];
+//   // res.json(filtered);
+//   errorHandling(res, filtered);
+// });
+//
+// function errorHandling(res, item) {
+//  if (item === undefined) {
+//    res.sendStatus(404);
+//  } else {
+//    res.json(item);
+//  }
+// }
 
 app.listen(3000);

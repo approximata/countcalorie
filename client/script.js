@@ -21,25 +21,12 @@ var foodManeger = (function() {
 //   }
 //   xhr.send(null);
 // }
-  //
-  // function xhrRequest(method, urlr, data, type, cb) {
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.open(method, urlr, true);
-  //   xhr.setRequestHeader(type, 'application/json');
-  //   xhr.send(data);
-  //   xhr.onload = function () {
-  //     if (xhr.readyState === xhr.DONE) {
-  //       cb(JSON.parse(xhr.response));
-  //       console.log(JSON.parse(xhr.response));
-  //     }
-  //   };
-  // }
 
   function addSendData() {
     return JSON.stringify(
       {
         "name": inputFieldName.value,
-        "calories": inputFieldCalorie.value,
+        "calorie": inputFieldCalorie.value,
         "date": inputFieldDate.value
       });
   }
@@ -50,6 +37,7 @@ var foodManeger = (function() {
     var type = 'Content-Type';
     xhrhandler.xhrRequest(method, urlr, addSendData(), type, function(response){
       console.log(response, 'front script.js');
+      domBuild.addHtml(response.meal);
     });
   }
 

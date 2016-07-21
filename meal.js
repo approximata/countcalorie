@@ -27,17 +27,25 @@ var meal = function(con){
   function addMealPrivate(food, cb) {
     var sqlInsert = 'INSERT INTO `tablecalorie` (`name`, `calorie`, `date`)' +
     ' VALUES (?, ?, ?);';
-    var values = [food.name, food.calories, food.date];
+    var values = [food.name, food.calorie, food.date];
     dbQueries(sqlInsert, values, function(result) {
       cb(result);
     });
   }
 
+  function deleteMealPrivate(id, cb) {
+    var sqlInsert = 'DELETE FROM `tablecalorie` WHERE `id`=?';
+    var value = id.toString()
+    console.log('deleteMeal has invited with', id);
+    dbQueries(sqlInsert, value, function(result) {
+      cb(result);
+    });
+  }
 
   return {
     listMeals: listMealPrivate,
     addMeal: addMealPrivate,
-    deleteMeal: deleteMeal
+    deleteMeal: deleteMealPrivate
   };
 };
 
