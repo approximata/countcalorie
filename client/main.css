@@ -1,6 +1,10 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+  text-align: center;
+  background-image: url('http://66.media.tumblr.com/e8acb221685eb2c7eba6165df72490cf/tumblr_o1l4rtwOVI1qkprgpo5_1280.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .jumbotron {

@@ -2,10 +2,6 @@
 
 var meal = function(con){
 
-  var listMeals = null;
-  var deleteMeal = null;
-
-
   function dbQueries(inputType, values, callback) {
     con.query(inputType, values, function(err, result) {
       if (err) {
@@ -42,10 +38,21 @@ var meal = function(con){
     });
   }
 
+  function getFiltered(req, cb) {
+    var sqlInsert = 'SELECT * FROM `tablecalorie` WHERE date LIKE ?';
+    var value = '"' + req.query.meal + '%' + '"';
+    console.log(value);
+    dbQueries(sqlInsert, value, function(result) {
+      console.log(result, 'from meal filter be');
+      cb(result);
+    });
+  }
+
   return {
     listMeals: listMealPrivate,
     addMeal: addMealPrivate,
-    deleteMeal: deleteMealPrivate
+    deleteMeal: deleteMealPrivate,
+    getFiltered: getFiltered
   };
 };
 

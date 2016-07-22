@@ -22,9 +22,13 @@ var myMeal = meal(con);
 
 app.get('/meals', function(req, res){
   var callback = function (result) {
-    console.log(result, 'from server.js');
+    console.log(result, 'from server.js meals');
     res.json(result);
   };
+  if (req.query.date) {
+    myMeal.getFiltered(callback);
+    return;
+  }
   myMeal.listMeals(callback);
 });
 
@@ -47,6 +51,7 @@ app.delete('/meals/:id', function(req, res){
   var callback = function (result){
     console.log(result, 'end point delete');
     if(result.affectedRows === 0){
+      console.log(result);
       res.json({ "status": "not exists" });
     }
     res.json({ "status": "ok",
