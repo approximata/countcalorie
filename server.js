@@ -26,7 +26,7 @@ app.get('/meals', function(req, res){
     res.json(result);
   };
   if (req.query.date) {
-    myMeal.getFiltered(callback);
+    myMeal.getFiltered(req, callback);
     return;
   }
   myMeal.listMeals(callback);

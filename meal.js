@@ -8,7 +8,6 @@ var meal = function(con){
         console.log(err.toString());
         return;
       }
-      console.log(result, 'from meal.js');
       callback(result);
     });
   }
@@ -40,7 +39,8 @@ var meal = function(con){
 
   function getFiltered(req, cb) {
     var sqlInsert = 'SELECT * FROM `tablecalorie` WHERE date LIKE ?';
-    var value = '"' + req.query.meal + '%' + '"';
+    console.log(req.query);
+    var value = req.query.date + '%';
     console.log(value);
     dbQueries(sqlInsert, value, function(result) {
       console.log(result, 'from meal filter be');

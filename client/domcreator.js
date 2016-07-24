@@ -24,7 +24,7 @@ var domBuild = (function() {
 
   function addInnerHtmlToAddHtml(element){
     return '<div class="food-item">' + element.name + ' ' +
-    element.calorie + ' ' + element.date +
+    element.calorie + ' ' + element.date.substring(0, 10) +
     '</div> <div class="buttons"> <button class="delete" type="button" id=' +
     'd' + element.id + '></button> </div>'
   }

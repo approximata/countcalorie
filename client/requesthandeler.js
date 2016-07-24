@@ -26,11 +26,11 @@ var xhrhandler = (function(){
          cb(xhr.status, null);
          return;
        }
-        cb(null, JSON.parse(xhr.response));
+        cb(JSON.parse(xhr.response));
         console.log(JSON.parse(xhr.response));
       }
     };
-    xhr.send(data && JSON.stringify(data));
+    xhr.send(data);
   }
 
   return {

@@ -44,7 +44,7 @@ var foodManeger = (function() {
     var type = 'Content-Type';
     xhrhandler.xhrRequest(method, urlr, null, type, function(response){
       console.log(response, 'front script.js');
-      cb(response.meal)
+      cb(response)
     });
   }
 
